@@ -4,6 +4,7 @@ import com.example.bigdata.connectors.ScoreEventArraySource;
 import com.example.bigdata.connectors.ScoreEventKafkaSource;
 import com.example.bigdata.model.ScoreEvent;
 import com.example.bigdata.testdata.Inputs;
+import com.example.bigdata.tools.Properties;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
@@ -15,9 +16,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 public class ScoreEventsDelayAnalysis {
     public static void main(String[] args) throws Exception {
 
-        ParameterTool propertiesFromFile = ParameterTool.fromPropertiesFile("src/main/resources/flink.properties");
-        ParameterTool propertiesFromArgs = ParameterTool.fromArgs(args);
-        ParameterTool properties = propertiesFromFile.mergeWith(propertiesFromArgs);
+        ParameterTool properties = Properties.get(args);
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 

@@ -9,6 +9,7 @@ import com.example.bigdata.testdata.Inputs;
 import com.example.bigdata.tools.HouseStatsAggregator;
 import com.example.bigdata.tools.HouseStatsProcessWindowFunction;
 import com.example.bigdata.tools.MySQLFakeSink;
+import com.example.bigdata.tools.Properties;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -21,9 +22,7 @@ import java.time.Duration;
 public class InstantTriggerUsage {
     public static void main(String[] args) throws Exception {
 
-        ParameterTool propertiesFromFile = ParameterTool.fromPropertiesFile("src/main/resources/flink.properties");
-        ParameterTool propertiesFromArgs = ParameterTool.fromArgs(args);
-        ParameterTool properties = propertiesFromFile.mergeWith(propertiesFromArgs);
+        ParameterTool properties = Properties.get(args);
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
