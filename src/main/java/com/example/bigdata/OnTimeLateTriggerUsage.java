@@ -49,7 +49,7 @@ public class OnTimeLateTriggerUsage {
         if (properties.getRequired("data.output").equals("console")) {
             houseStatsDS.process(new MySQLFakeSink("")).print();
         } else {
-            houseStatsDS.addSink(MySQLSink.create(properties, MySQLSink.INSERT_COMMAND));
+            houseStatsDS.addSink(MySQLSink.create(properties, ""));
         }
 
         env.execute("OnTime Late Trigger Usage");
