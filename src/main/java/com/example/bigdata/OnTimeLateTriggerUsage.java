@@ -43,7 +43,7 @@ public class OnTimeLateTriggerUsage {
 
         DataStream<HouseStatsResult> houseStatsDS = scoreEventDS
                 .keyBy(ScoreEvent::getHouse)
-                .window(TumblingEventTimeWindows.of(Time.hours(12)))
+                .window(TumblingEventTimeWindows.of(Time.hours(6)))
                 .aggregate(new HouseStatsAggregator(), new HouseStatsProcessWindowFunction());
 
         if (properties.getRequired("data.output").equals("console")) {
