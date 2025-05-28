@@ -32,7 +32,7 @@ public class HouseStatsAnalysis {
 
         if (properties.getRequired("data.input").equals("array")) {
             scoreEventDS = env
-                    .addSource(new ScoreEventArraySource(Inputs.getJsonUnorderedStrings(),100))
+                    .addSource(new ScoreEventArraySource(Inputs.getJsonUnorderedStrings(),20))
                     .assignTimestampsAndWatermarks(WatermarkStrategy.forMonotonousTimestamps());
         } else {
             scoreEventDS = env
